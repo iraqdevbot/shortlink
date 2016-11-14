@@ -1,6 +1,6 @@
 <?php
-define('API_KEY', '284531543:AAGH0xQ7nIlN2jpnXnnFeP7vqwbgBw4Nhh4'); // token here
-define('ADMIN', '39770224'); // id here
+define('API_KEY', '265951062:AAHSzUfmatNYY_HwRGgRgNLwnSc24Jga0VY'); // token here
+define('ADMIN', '249010980'); // id here
 function iluli($method,$datas=[]){
     $url = "https://api.telegram.org/bot".API_KEY."/".$method;
     $ch = curl_init();
@@ -14,7 +14,15 @@ function iluli($method,$datas=[]){
         return json_decode($res);
     }
 }
+
 $update = json_decode(file_get_contents('php://input'));
+$CallbackQueryid = $update->id;
+$Cfrom =  $update->from->id;
+$Cm =  $update->message->message_id;
+$Cd = $update->data;
+$answerCallbackQuery = $update->callback_query_id;
+$answertext = $update->text;
+$show_alert = $update->show_alert;
 $message = $update->message;
 $mid = $message->message_id;
 $chat_id = $update->message->chat->id;
@@ -26,7 +34,10 @@ $username = $message->from->username;
 $text = $update->message->text;
 $from = $update->message->from->id;
   if(preg_match('/^([Hh]ttp|[Hh]ttps)(.*)/',$text)){
-    $short = file_get_contents('http://yeo.ir/api.php?url='.$text);
+    $short = file_get_contents('http://yeo.ir/api.php?url='.urlencode($text));
+    $short3 = file_get_contents("http://api.gpmod.ir/shorten/?url=".urlencode($text)."&username=mersad565@gmail.com");
+    $short4 = file_get_contents('http://u2s.ir/?api=1&return_text=1&url='.urlencode($text));
+    $short5 = file_get_contents("http://llink.ir/yourls-api.php?signature=a13360d6d8&action=shorturl&url=".urlencode($text)."&format=simple");
     $U = "[$firstname](https://telegram.me/$username)" or $firstname;
     iluli('sendChatAction',[
     'chat_id'=>$chat_id,
@@ -34,14 +45,23 @@ $from = $update->message->from->id;
     ]);
     iluli('sendMessage',[
       'chat_id'=>$chat_id,
-      'text'=>"*Hi,* $U  \n\n [Short link]($short)",
+      'text'=>"*Hi,* $U  \n\n [Short by yeo.ir]($short) \n\n [Short by gpmod.ir]($short3) \n\n [Short by u2s.ir]($short4) \n\n [Short by llink.ir]($short5)",
       'disable_web_page_preview'=>'true',
       'parse_mode'=>'Markdown',
       'reply_to_message_id'=>$mid,
       'reply_markup'=>json_encode([
       'inline_keyboard'=>[
         [
-          ['text'=>'Short link','url'=>$short]
+          ['text'=>'Short by yeo.ir','url'=>$short]
+        ],
+        [
+          ['text'=>'Short by gpmod.ir','url'=>$short3]
+        ],
+        [
+          ['text'=>'Short by u2s.ir','url'=>$short4]
+        ],
+        [
+          ['text'=>'Short by llink.ir','url'=>$short5]
         ],
 	[
           ['text'=>'Channel','url'=>'https://telegram.me/joinchat/CY6yfEB5Mcy6TL5KPKEVcQ']
