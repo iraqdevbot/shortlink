@@ -42,6 +42,9 @@ $from = $update->message->from->id;
       'inline_keyboard'=>[
         [
           ['text'=>'Short link','url'=>$short]
+        ],
+	[
+          ['text'=>'Channel','url'=>'https://telegram.me/joinchat/CY6yfEB5Mcy6TL5KPKEVcQ']
         ]
       ]
     ])
@@ -55,14 +58,14 @@ $from = $update->message->from->id;
     ]);
 	  iluli('sendMessage',[
       'chat_id'=>$chat_id,
-      'text'=>"Hi, $U 😉👋\nIm Bot Short LInker 😃\nPlease Send Your Link 🙌\n\n[Channel](https://telegram.me/joinchat/DtebJD-YicabzaggOWIHeQ)",
+      'text'=>"Hi, $U 😉👋\nIm Bot Short LInker 😃\nPlease Send Your Link 🙌\n\n[Channel](https://telegram.me/joinchat/CY6yfEB5Mcy6TL5KPKEVcQ)",
       'disable_web_page_preview'=>'true',
       'parse_mode'=>'Markdown',
       'reply_to_message_id'=>$mid,
       'reply_markup'=>json_encode([
       'inline_keyboard'=>[
         [
-          ['text'=>'Channel','url'=>'https://telegram.me/joinchat/DtebJD-YicabzaggOWIHeQ']
+          ['text'=>'Channel','url'=>'https://telegram.me/joinchat/CY6yfEB5Mcy6TL5KPKEVcQ']
         ]
       ]
     ])
