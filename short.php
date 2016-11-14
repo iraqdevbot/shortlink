@@ -1,6 +1,6 @@
 <?php
-define('API_KEY', '265951062:AAHSzUfmatNYY_HwRGgRgNLwnSc24Jga0VY'); // token here
-define('ADMIN', '249010980'); // id here
+define('API_KEY', '284531543:AAGH0xQ7nIlN2jpnXnnFeP7vqwbgBw4Nhh4'); // token here
+define('ADMIN', '39770224'); // id here
 function iluli($method,$datas=[]){
     $url = "https://api.telegram.org/bot".API_KEY."/".$method;
     $ch = curl_init();
